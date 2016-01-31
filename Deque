@@ -1,0 +1,50 @@
+#include <iostream>
+#include <deque> 
+#include <algorithm>
+using namespace std;
+void printKMax(int arr[], int n, int k){
+    
+    deque <int> dq;
+    int i = n/k, lb = 0;
+    int max[i];
+    
+    while (k <= n) {
+        
+        for (i = lb; i < k; i++) {
+            dq.push_back(arr[i]);
+        }
+        
+        i = 0;
+        max[i] = *std::max_element(dq.begin(),dq.end());
+        dq.clear();
+        
+        i++;
+        lb++;
+        k++;
+    }
+    
+    i = 0;
+    while (i < sizeof(max)) {
+        printf("%d ", max[i]);
+        i++;
+    }
+    
+    printf("\n");
+}
+
+int main(){
+  
+   int t;
+   cin >> t;
+   while(t>0) {
+      int n,k;
+       cin >> n >> k;
+       int i;
+       int arr[n];
+       for(i=0;i<n;i++)
+            cin >> arr[i];
+       printKMax(arr, n, k);
+       t--;
+     }
+     return 0;
+}
