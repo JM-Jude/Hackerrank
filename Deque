@@ -4,6 +4,37 @@
 using namespace std;
 void printKMax(int arr[], int n, int k){
     
+    // Attempt 2 /////////////////////////
+    
+    deque <int> dq;
+    int i = 0;
+    vector <int> max;
+    
+    while (i < k) {
+        dq.push_back(arr[i]);
+        i++;
+    }
+    max.push_back(*std::max_element(dq.begin(),dq.end()));
+    k++;
+    
+    while (k <= n) {
+        
+        dq.pop_front();
+        dq.push_back(arr[i++]);
+        
+        max.push_back(*std::max_element(dq.begin(),dq.end()));
+        
+        k++;
+    }
+
+    i = 0;
+    for (std::vector<int>::const_iterator j = max.begin(); j != max.end(); ++j)
+        std::cout << *j << ' ';
+    
+    cout << "\n";
+    
+    // Attempt 1 /////////////////////////
+    
     deque <int> dq;
     int i = n/k, lb = 0;
     int max[i];
